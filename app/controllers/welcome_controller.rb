@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
   def index
-    @pages = Page.where("")
+    @transactions = Transaction.where("")
   end
 end

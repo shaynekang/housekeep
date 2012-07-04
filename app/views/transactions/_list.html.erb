@@ -1,0 +1,19 @@
+<% unless @transactions.empty? %>
+  <table>
+    <tr>
+      <th>수입</th>
+      <th>지출</th>
+      <th>내역</th>
+    </tr>
+    <% @transactions.each do |transaction| %>
+      <tr>
+        <td><%= transaction.income? ? number_to_currency(transaction.amount) : '' %></td>
+        <td><%= transaction.expense? ? number_to_currency(transaction.amount) : '' %></td>
+        <td><%= transaction.note %></td>
+      </tr>
+    <% end %>
+  </table>
+  <p>총합: <%= number_to_currency @transactions.total %></p>
+<% else %>
+  <p>가게부 내역이 없습니다.</p>
+<% end %>

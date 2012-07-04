@@ -1,4 +1,5 @@
 Housekeep::Application.routes.draw do
-  resources :pages, only: [:new, :create]
+  resources :transactions, only: [:new, :create]
+
   root to: 'welcome#index'
 end

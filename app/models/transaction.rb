@@ -1,4 +1,4 @@
-class Page < ActiveRecord::Base
+class Transaction < ActiveRecord::Base
   attr_accessible :amount, :note
 
   validates :amount, presence: true, numericality: true

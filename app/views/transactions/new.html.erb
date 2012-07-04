@@ -1,6 +1,6 @@
 <h3>새로운 내역</h3>
 
-<%= form_for @page do |f| %>
+<%= form_for @transaction do |f| %>
   <%= f.error_messages %>
   <div>
     <%= f.label :amount %>
@@ -15,4 +15,4 @@
   </div>
 <% end %>
 
-<%= render 'pages/list' %>
+<%= render 'transactions/list' %>

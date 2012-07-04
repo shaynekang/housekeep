@@ -11,9 +11,9 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120703131452) do
+ActiveRecord::Schema.define(:version => 20120704134251) do
 
-  create_table "pages", :force => true do |t|
+  create_table "transactions", :force => true do |t|
     t.decimal  "amount",     :default => 0.0
     t.text     "note"
     t.datetime "created_at",                  :null => false
