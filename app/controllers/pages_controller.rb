@@ -2,7 +2,7 @@
 
 class PagesController < ApplicationController
   def new
-    @pages = Page.all
+    @pages = Page.where("")
     @page = Page.new
   end
 
@@ -11,7 +11,7 @@ class PagesController < ApplicationController
     if @page.save
       redirect_to :root, notice: "새로운 내역을 만들었습니다."
     else
-      @pages = Page.all
+      @pages = Page.where("")
       render 'new'
     end
   end

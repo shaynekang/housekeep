@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
   def index
-    @pages = Page.all
+    @pages = Page.where("")
   end
 end
