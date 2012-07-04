@@ -1,4 +1,5 @@
 <h3>가게부 내역</h3>
+
 <% unless @pages.empty? %>
   <table>
     <tr>
@@ -8,8 +9,8 @@
     </tr>
     <% @pages.each do |page| %>
       <tr>
-        <td><%= number_to_currency page.income? ? page.amount : 0 %></td>
-        <td><%= number_to_currency page.expense? ? page.amount : 0 %></td>
+        <td><%= page.income? ? number_to_currency(page.amount) : '' %></td>
+        <td><%= page.expense? ? number_to_currency(page.amount) : '' %></td>
         <td><%= page.note %></td>
       </tr>
     <% end %>
