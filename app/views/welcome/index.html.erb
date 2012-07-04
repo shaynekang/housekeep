@@ -1,15 +1,19 @@
 <h3>가게부 내역</h3>
 <% unless @pages.empty? %>
+  <table>
+    <tr>
+      <th>수입</th>
+      <th>지출</th>
+      <th>내역</th>
+    </tr>
   <% @pages.each do |page| %>
-    <dl>
-      <dt>내역</dt>
-      <dd><%= page.amount %></dd>
-    </dl>
-    <dl>
-      <dt>설명</dt>
-      <dd><%= page.note %></dd>
-    </dl>
+    <tr>
+      <td><%= number_to_currency page.income? ? page.amount : 0 %></td>
+      <td><%= number_to_currency page.expense? ? page.amount : 0 %></td>
+      <td><%= page.note %></td>
+    </tr>
   <% end %>
+  </table>
 <% else %>
   <p>가게부 내역이 없습니다.</p>
 <% end %>
