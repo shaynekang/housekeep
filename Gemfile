@@ -1,9 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.6'
-gem 'sqlite3'
 gem 'jquery-rails'
-
 gem 'dynamic_form'
 gem 'rails-i18n'
 
@@ -22,4 +20,9 @@ end
 
 group :development, :test do
   gem 'debugger'
+  gem 'sqlite3'
+end
+
+group :production do
+  gem 'pg'
 end
