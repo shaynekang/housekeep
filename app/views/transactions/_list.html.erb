@@ -1,15 +1,22 @@
 <% unless @transactions.empty? %>
   <table>
     <tr>
+      <th>시간</th>
       <th>수입</th>
       <th>지출</th>
       <th>내역</th>
+      <th>메뉴</th>
     </tr>
     <% @transactions.each do |transaction| %>
       <tr>
+        <td><%= transaction.transacted_at %></td>
         <td><%= transaction.income? ? number_to_currency(transaction.amount) : '' %></td>
         <td><%= transaction.expense? ? number_to_currency(transaction.amount) : '' %></td>
         <td><%= transaction.note %></td>
+        <td>
+          <%= link_to "수정", [:edit, transaction] %>
+          <%= link_to "제거", transaction, method: :delete %>
+        </td>
       </tr>
     <% end %>
   </table>

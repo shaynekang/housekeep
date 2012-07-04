@@ -1,0 +1,18 @@
+<%= form_for @transaction do |f| %>
+  <%= f.error_messages %>
+  <div>
+    <%= f.label :transacted_at %>
+    <%= f.datetime_select :transacted_at,  %>
+  </div>
+  <div>
+    <%= f.label :amount %>
+    <%= f.text_field :amount %>
+  </div>
+  <div>
+    <%= f.label :note %>
+    <%= f.text_area :note %>
+  </div>
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>
