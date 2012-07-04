@@ -4,6 +4,8 @@ gem 'rails', '3.2.6'
 gem 'sqlite3'
 gem 'jquery-rails'
 
+gem 'rails-i18n'
+
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
@@ -17,4 +19,6 @@ group :test do
   gem 'guard-rspec'
 end
 
-gem 'debugger'
+group :development, :test do
+  gem 'debugger'
+end
