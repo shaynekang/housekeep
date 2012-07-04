@@ -59,6 +59,16 @@ describe Page do
         Page.expenses.should == [expense1, expense2, expense3]
       end
     end
+
+    describe "##total" do
+      it "should return total amount of page" do
+        create_page(amount: -50)
+        create_page(amount: -20)
+        create_page(amount: +30)
+
+        Page.total.should == -40
+      end
+    end
   end
 
   describe "'s instance methods" do

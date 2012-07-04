@@ -9,6 +9,12 @@ class Page < ActiveRecord::Base
   scope :incomes,  where('amount > ?', 0)
   scope :expenses, where('amount < ?', 0)
 
+  class << self
+    def total
+      sum(:amount)
+    end
+  end
+
   def income?
     amount > 0
   end
