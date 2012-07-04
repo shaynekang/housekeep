@@ -1,5 +1,7 @@
 class Transaction < ActiveRecord::Base
-  attr_accessible :amount, :note
+  default_scope order('transacted_at DESC')
+
+  attr_accessible :amount, :note, :transacted_at
 
   validates :amount, presence: true, numericality: true
   validates :note, presence: true

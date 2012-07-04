@@ -11,13 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120704134251) do
+ActiveRecord::Schema.define(:version => 20120704134423) do
 
   create_table "transactions", :force => true do |t|
-    t.decimal  "amount",     :default => 0.0
+    t.decimal  "amount",        :default => 0.0
     t.text     "note"
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.datetime "transacted_at"
   end
 
 end

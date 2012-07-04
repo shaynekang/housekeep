@@ -10,6 +10,16 @@ describe Transaction do
     Transaction.create!(DEFAULT_PARAMETERS.merge(params))
   end
 
+  describe "'s default scope" do
+    it "should order by transacted_at column" do
+      now = DateTime.now
+      transaction1 = create_transaction(transacted_at: now - 3.day)
+      transaction2 = create_transaction(transacted_at: now - 1.day)
+      transaction3 = create_transaction(transacted_at: now - 2.day)
+      Transaction.all.should == [transaction2, transaction3, transaction1]
+    end
+  end
+
   describe "'s validation" do
     it "should create a new instnce" do
       transaction = make_transaction
