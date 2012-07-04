@@ -4,6 +4,7 @@ gem 'rails', '3.2.6'
 gem 'sqlite3'
 gem 'jquery-rails'
 
+gem 'dynamic_form'
 gem 'rails-i18n'
 
 group :assets do
