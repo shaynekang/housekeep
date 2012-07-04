@@ -5,19 +5,9 @@ class Page < ActiveRecord::Base
   validates :note, presence: true
 
   validate :amount_cannot_be_zero
-  def amount_cannot_be_zero
-    errors.add(:amount, "amount can't be zero") if amount == 0
-  end
 
-  class << self
-    def incomes
-      where('amount > ?', 0)
-    end
-
-    def expenses
-      where('amount < ?', 0)
-    end
-  end
+  scope :incomes,  where('amount > ?', 0)
+  scope :expenses, where('amount < ?', 0)
 
   def income?
     amount > 0
@@ -25,5 +15,10 @@ class Page < ActiveRecord::Base
 
   def expense?
     amount < 0
+  end
+
+  private
+  def amount_cannot_be_zero
+    errors.add(:amount, "amount can't be zero") if amount == 0
   end
 end
