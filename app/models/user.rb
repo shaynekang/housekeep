@@ -13,15 +13,16 @@ class User < ActiveRecord::Base
                new(provider: auth['provider'], uid: auth['uid'])
              end
 
-      info = auth['info']
-
-      user.name = info['nickname'] unless info['nickname'].blank?
-      user.name = info['name'] unless info['name'].blank?
-      user.email = info['email'] unless info['email'].blank?
-      user.avatar = info['image'] unless info['image'].blank?
-
+      user.insert_omniauth_info(auth['info'])
       user.save!
       user
     end
+  end
+
+  def insert_omniauth_info(info)
+    self.name = info['nickname'] unless info['nickname'].blank?
+    self.name = info['name'] unless info['name'].blank?
+    self.email = info['email'] unless info['email'].blank?
+    self.avatar = info['image'] unless info['image'].blank?
   end
 end
