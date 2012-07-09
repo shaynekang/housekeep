@@ -32,11 +32,6 @@ describe User do
       user.should be_invalid
     end
 
-    it "shouldn't create a new instance if email is blank" do
-      user = new_user(email: "")
-      user.should be_invalid
-    end
-
     it "shouldn't create a new instance if provider and uid is unique" do
       user = new_user(provider: "twitter", uid: "37")
       user.save!
