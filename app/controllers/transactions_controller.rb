@@ -3,6 +3,10 @@
 class TransactionsController < ApplicationController
   before_filter :find_transactions
 
+  def index
+    @transactions = Transaction.where("")
+  end
+
   def new
     @transaction = Transaction.new
   end
