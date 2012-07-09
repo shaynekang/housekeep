@@ -1,5 +1,4 @@
 class WelcomeController < ApplicationController
-  def index
-    @transactions = Transaction.where("")
-  end
+  layout :nil
+  skip_before_filter :login_required
 end
