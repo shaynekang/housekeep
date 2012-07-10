@@ -24,6 +24,7 @@ group :test do
   gem 'guard-rails'
   gem 'guard-rspec'
   gem 'database_cleaner'
+  gem 'simplecov', :require => false
 end
 
 group :development, :test do

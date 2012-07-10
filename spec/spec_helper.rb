@@ -1,3 +1,17 @@
+if ENV["COVERAGE"]
+  require 'simplecov'
+  SimpleCov.start do
+    add_filter '/app/controllers'
+    add_filter '/app/helpers'
+    add_filter '/app/mailers'
+    add_filter '/config'
+    add_filter '/lib'
+    add_filter '/spec'
+    
+    add_group "Models", "app/models"
+  end
+end
+
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
