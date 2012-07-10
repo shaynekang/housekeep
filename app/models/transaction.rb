@@ -11,13 +11,18 @@ class Transaction < ActiveRecord::Base
   scope :incomes,  where('amount > ?', 0)
   scope :expenses, where('amount < ?', 0)
 
-  class << self
+  module ClassMethods
     def total
-      sum(:amount)
+      sum(&:amount)
     end
+  end
+  extend ClassMethods
 
+  class << self
     def group_by_date
-      scoped.group_by {|transaction| transaction.transacted_at.strftime("%Y.%m.%d")}
+      grouped = scoped.group_by {|transaction| transaction.transacted_at.strftime("%Y.%m.%d")}
+      grouped.each{|date, transactions| transactions.extend(ClassMethods)}
+      grouped
     end
   end
 
