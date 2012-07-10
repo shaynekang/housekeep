@@ -2,7 +2,8 @@
   <%= f.error_messages %>
   <div>
     <%= f.label :transacted_at %>
-    <%= f.datetime_select :transacted_at,  %>
+    <% default_datetime = params[:transacted_at] ? DateTime.parse(params[:transacted_at]) : @transaction %>
+    <%= f.datetime_select :transacted_at, default: default_datetime %>
   </div>
   <div>
     <%= f.label :amount %>
