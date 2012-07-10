@@ -20,7 +20,9 @@ class Transaction < ActiveRecord::Base
 
   class << self
     def group_by_date
-      grouped = scoped.group_by {|transaction| transaction.transacted_at.strftime("%Y.%m.%d")}
+      grouped = scoped.group_by do |transaction|
+        transaction.transacted_at.strftime("%Y.%m.%d")
+      end
       grouped.each{|date, transactions| transactions.extend(ClassMethods)}
       grouped
     end

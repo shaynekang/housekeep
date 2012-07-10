@@ -84,7 +84,10 @@ describe Transaction do
       it "should group transaction by transacted_at" do
         yesterday = DateTime.now - 1.day
         today = DateTime.now
-        expected = {yesterday.strftime("%Y.%m.%d") => 1, today.strftime("%Y.%m.%d") => 2} 
+        expected = {
+          yesterday.strftime("%Y.%m.%d") => 1,
+          today.strftime("%Y.%m.%d") => 2
+        }
 
         create_transaction(transacted_at: yesterday)
         create_transaction(transacted_at: today)
