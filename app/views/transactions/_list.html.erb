@@ -2,6 +2,7 @@
   <% @transactions.group_by_date.each do |transacted_date, transactions| %>
     <h3><%= transacted_date %></h3>
     <%= link_to "새로운 내역 작성하기", new_transaction_path(transacted_at: transacted_date) %>
+
     <table>
       <tr>
         <th>시간</th>
@@ -26,6 +27,7 @@
 
     <p>총합: <%=  transactions.total %></p>
   <% end %>
+  <p>총합: <%=  @transactions.total %></p>
 <% else %>
   <p>가게부 내역이 없습니다.</p>
 <% end %>
