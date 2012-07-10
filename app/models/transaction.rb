@@ -15,6 +15,10 @@ class Transaction < ActiveRecord::Base
     def total
       sum(:amount)
     end
+
+    def group_by_date
+      scoped.group_by {|transaction| transaction.transacted_at.strftime("%Y.%m.%d")}
+    end
   end
 
   def income?

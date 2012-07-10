@@ -79,6 +79,22 @@ describe Transaction do
         Transaction.total.should == -40
       end
     end
+
+    describe "##group_by_date" do
+      it "should group transaction by transacted_at" do
+        yesterday = DateTime.now - 1.day
+        today = DateTime.now
+        expected = {yesterday.strftime("%Y.%m.%d") => 1, today.strftime("%Y.%m.%d") => 2} 
+
+        create_transaction(transacted_at: yesterday)
+        create_transaction(transacted_at: today)
+        create_transaction(transacted_at: today)
+
+        result = Transaction.group_by_date
+        result = Hash[*result.map{|k, v| [k, v.count]}.sort.flatten]
+        result.should == expected
+      end
+    end
   end
 
   describe "'s instance methods" do
@@ -97,3 +113,12 @@ describe Transaction do
     end
   end
 end
+
+
+
+
+
+
+
+
+
