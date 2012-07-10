@@ -25,9 +25,9 @@
       <% end %>
     </table>
 
-    <p>총합: <%=  transactions.total %></p>
+    <p>총합: <%=  number_to_currency transactions.total %></p>
   <% end %>
-  <p>총합: <%=  @transactions.total %></p>
+  <p>총합: <%=  number_to_currency @transactions.total %></p>
 <% else %>
   <p>가게부 내역이 없습니다.</p>
 <% end %>
