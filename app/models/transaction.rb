@@ -3,6 +3,8 @@ class Transaction < ActiveRecord::Base
 
   attr_accessible :amount, :note, :transacted_at
 
+  belongs_to :book
+
   validates :amount, presence: true, numericality: true
   validates :note, presence: true
 

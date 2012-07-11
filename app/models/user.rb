@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   attr_accessible :provider, :uid, :name, :email, :avatar
 
+  has_many :books, :dependent => :destroy
+
   validates_presence_of :provider, :uid, :name
   validates_uniqueness_of :uid, :scope => :provider
 
