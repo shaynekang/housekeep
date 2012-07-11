@@ -1,46 +1,31 @@
 require 'spec_helper'
 
 describe User do
-  USER_DEFAULT_PARAMETERS = {
-    provider: "twitter",
-    uid: "37",
-    name: "John Doe",
-    email: "john.doe@gmail.com"
-  }
-  def new_user(params={})
-    User.new(USER_DEFAULT_PARAMETERS.merge(params))
-  end
-
-  def create_user(params={})
-    User.create!(USER_DEFAULT_PARAMETERS.merge(params))
-  end
-
   describe "validation" do
     it "should create a new instance" do
-      user = new_user
+      user = build(:user)
       user.should be_valid
     end
 
     it "shouldn't create a new instance if provider is blank" do
-      user = new_user(provider: "")
+      user = build(:user, provider: "")
       user.should be_invalid
     end
 
     it "shouldn't create a new instance if uid is blank" do
-      user = new_user(uid: "")
+      user = build(:user, uid: "")
       user.should be_invalid
     end
 
     it "shouldn't create a new instance if name is blank" do
-      user = new_user(name: "")
+      user = build(:user, name: "")
       user.should be_invalid
     end
 
     it "shouldn't create a new instance if provider and uid is unique" do
-      user = new_user(provider: "twitter", uid: "37")
-      user.save!
+      create(:user, provider: "twitter", uid: "37")
 
-      user = new_user(provider: "twitter", uid: "37")
+      user = build(:user, provider: "twitter", uid: "37")
       user.should be_invalid
     end
   end
@@ -64,9 +49,7 @@ describe User do
       end
 
       it "should return the user given provider and uid" do
-        before = new_user(provider: "twitter", uid: "37")
-        before.save!
-
+        before = create(:user, provider: params['provider'], uid: params['uid'])
         after = User.find_or_create_with_omniauth!(params)
 
         before.should == after
@@ -86,7 +69,7 @@ describe User do
 
     describe "#insert_omniauth_info" do
       it "should insert omniauth information" do
-        user = new_user
+        user = build(:user)
         user.insert_omniauth_info(params)
 
         user.name.should == "John Doe"
@@ -97,14 +80,14 @@ describe User do
 
     describe "#default_book" do
       it "should return first book if any book exist" do
-        user = create_user
+        user = create(:user)
         book = user.books.create!(title: "HouseKeep")
 
         user.default_book.should == book
       end
 
       it "should create a book if no book exist" do
-        user = create_user
+        user = create(:user)
 
         expect do
           user.default_book
