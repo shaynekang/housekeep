@@ -7,7 +7,7 @@ if ENV["COVERAGE"]
     add_filter '/config'
     add_filter '/lib'
     add_filter '/spec'
-    
+
     add_group "Models", "app/models"
   end
 end
