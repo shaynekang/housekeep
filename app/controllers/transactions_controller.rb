@@ -4,15 +4,15 @@ class TransactionsController < ApplicationController
   before_filter :find_transactions
 
   def new
-    @transaction = Transaction.new
+    @transaction = @transactions.build
   end
 
   def edit
-    @transaction = Transaction.find(params[:id])
+    @transaction = @transactions.find(params[:id])
   end
 
   def create
-    @transaction = Transaction.new(params[:transaction])
+    @transaction = @transactions.build(params[:transaction])
     if @transaction.save
       redirect_to :transactions, notice: "새로운 내역을 만들었습니다."
     else
@@ -21,7 +21,7 @@ class TransactionsController < ApplicationController
   end
 
   def update
-    @transaction = Transaction.find(params[:id])
+    @transaction = @transactions.find(params[:id])
     if @transaction.update_attributes(params[:transaction])
       redirect_to :transactions, notice: "내역을 수정했습니다."
     else
@@ -30,13 +30,13 @@ class TransactionsController < ApplicationController
   end
 
   def destroy
-    @transaction = Transaction.find(params[:id])
+    @transaction = @transactions.find(params[:id])
     @transaction.destroy
     redirect_to :root, notice: "성공적으로 내역을 제거하였습니다."
   end
 
   private
   def find_transactions
-    @transactions = Transaction.scoped
+    @transactions = current_user.default_book.transactions
   end
 end

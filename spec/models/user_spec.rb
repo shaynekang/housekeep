@@ -11,6 +11,10 @@ describe User do
     User.new(USER_DEFAULT_PARAMETERS.merge(params))
   end
 
+  def create_user(params={})
+    User.create!(USER_DEFAULT_PARAMETERS.merge(params))
+  end
+
   describe "validation" do
     it "should create a new instance" do
       user = new_user
@@ -88,6 +92,23 @@ describe User do
         user.name.should == "John Doe"
         user.email.should == "john.doe@gmail.com"
         user.avatar.should == "http://www.twitter.com/avatar.png"
+      end
+    end
+
+    describe "#default_book" do
+      it "should return first book if any book exist" do
+        user = create_user
+        book = user.books.create!(title: "HouseKeep")
+
+        user.default_book.should == book
+      end
+
+      it "should create a book if no book exist" do
+        user = create_user
+
+        expect do
+          user.default_book
+        end.should change(Book, :count).from(0).to(1)
       end
     end
   end

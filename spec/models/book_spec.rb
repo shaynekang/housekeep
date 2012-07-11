@@ -15,7 +15,6 @@ describe Book do
     @user ||= User.create!(user_attributes)
   end
 
-
 	describe "'s validation" do
     it "should create a new instance" do
       book = user.books.build(book_attributes)
