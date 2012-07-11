@@ -15,10 +15,7 @@ class Transaction < ActiveRecord::Base
     def total
       sum(&:amount)
     end
-  end
-  extend ClassMethods
 
-  class << self
     def group_by_date
       grouped = scoped.group_by do |transaction|
         transaction.transacted_at.strftime("%Y.%m.%d")
@@ -27,6 +24,7 @@ class Transaction < ActiveRecord::Base
       grouped
     end
   end
+  extend ClassMethods
 
   def income?
     amount > 0
