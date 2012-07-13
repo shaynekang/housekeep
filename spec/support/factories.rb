@@ -23,7 +23,7 @@ FactoryGirl.define do
     title "Alice in the Wonderland"
   end
 
-  factory :transaction do
+  factory :page do
     book
     amount 10
     note "salary"

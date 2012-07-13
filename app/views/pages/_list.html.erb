@@ -1,0 +1,49 @@
+<% unless @pages.empty? %>
+  <% @pages.group_by_date.each do |transacted_date, pages| %>
+    <h3><%= transacted_date %></h3>
+    <%= link_to "새로운 내역 작성하기", new_page_path(transacted_at: transacted_date) %>
+
+    <table>
+      <tr>
+        <th>시간</th>
+        <th>수입</th>
+        <th>지출</th>
+        <th>내역</th>
+        <th>메뉴</th>
+      </tr>
+      <% pages.each do |page| %>
+        <tr>
+          <td><%= page.transacted_at %></td>
+          <td><%= page.income? ? number_to_currency(page.amount) : '' %></td>
+          <td><%= page.expense? ? number_to_currency(page.amount) : '' %></td>
+          <td><%= page.note %></td>
+          <td>
+            <%= link_to "수정", [:edit, page] %>
+            <%= link_to "제거", page, method: :delete %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+
+    <p>총합: <%=  number_to_currency pages.total %></p>
+  <% end %>
+  <p>총합: <%=  number_to_currency @pages.total %></p>
+<% else %>
+  <p>가게부 내역이 없습니다.</p>
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

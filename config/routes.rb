@@ -1,5 +1,5 @@
 Housekeep::Application.routes.draw do
-  resources :transactions, except: [:show]
+  resources :pages, except: [:show]
 
   match 'auth/:provider/callback' => 'providers#create'
   match 'logout' => 'providers#destroy', :as => :logout
