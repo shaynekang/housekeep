@@ -19,6 +19,7 @@ end
 
 group :development do
   gem 'cane'
+  gem 'rails_best_practices'
 end
 
 group :test do
