@@ -37,6 +37,6 @@ class TransactionsController < ApplicationController
 
   private
   def find_transactions
-    @transactions = current_user.default_book.transactions
+    @transactions = current_user.books.default.transactions
   end
 end

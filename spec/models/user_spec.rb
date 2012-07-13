@@ -77,22 +77,5 @@ describe User do
         user.avatar.should == "http://www.twitter.com/avatar.png"
       end
     end
-
-    describe "#default_book" do
-      it "should return first book if any book exist" do
-        user = create(:user)
-        book = user.books.create!(title: "HouseKeep")
-
-        user.default_book.should == book
-      end
-
-      it "should create a book if no book exist" do
-        user = create(:user)
-
-        expect do
-          user.default_book
-        end.should change(Book, :count).from(0).to(1)
-      end
-    end
   end
 end

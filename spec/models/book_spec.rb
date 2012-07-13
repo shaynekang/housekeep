@@ -37,4 +37,21 @@ describe Book do
       alice2.should be_valid
     end
   end
+
+  describe "class methods" do
+    describe "##default" do
+      it "should return first book if any book exist" do
+        author = create(:author)
+        book = author.books.create!(title: "HouseKeep")
+        author.books.default.should == book
+      end
+
+      it "should create a book if no book exist" do
+        author = create(:author)
+        expect do
+          author.books.default
+        end.should change(Book, :count).from(0).to(1)
+      end
+    end
+  end
 end

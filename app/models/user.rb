@@ -27,12 +27,4 @@ class User < ActiveRecord::Base
     self.email = info['email'] unless info['email'].blank?
     self.avatar = info['image'] unless info['image'].blank?
   end
-
-  def default_book
-    unless books.empty?
-      books.first
-    else
-      books.create!(title: "default")
-    end
-  end
 end
