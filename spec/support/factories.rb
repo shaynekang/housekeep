@@ -25,6 +25,7 @@ FactoryGirl.define do
   end
 
   factory :transaction do
+    book
     amount 10
     note "salary"
   end

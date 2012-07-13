@@ -5,6 +5,7 @@ class Transaction < ActiveRecord::Base
 
   belongs_to :book
 
+  validates :book_id, presence: true
   validates :amount, presence: true, numericality: true
   validates :note, presence: true
 

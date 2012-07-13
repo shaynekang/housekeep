@@ -4,6 +4,7 @@ describe Book do
   describe "'s validation" do
     it "should create a new instance" do
       book = build(:book)
+      raise book.errors.inspect if book.invalid?
       book.should be_valid
     end
 

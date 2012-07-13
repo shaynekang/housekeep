@@ -3,10 +3,12 @@ require 'spec_helper'
 describe Transaction do
   describe "'s default scope" do
     it "should order by transacted_at column" do
+      book = create(:book)
       now = DateTime.now
-      transaction1 = create(:transaction, transacted_at: now - 3.day)
-      transaction2 = create(:transaction, transacted_at: now - 1.day)
-      transaction3 = create(:transaction, transacted_at: now - 2.day)
+
+      transaction1 = create(:transaction, book: book, transacted_at: now - 3.day)
+      transaction2 = create(:transaction, book: book, transacted_at: now - 1.day)
+      transaction3 = create(:transaction, book: book, transacted_at: now - 2.day)
       Transaction.all.should == [transaction2, transaction3, transaction1]
     end
   end
@@ -36,15 +38,21 @@ describe Transaction do
       transaction = build(:transaction, amount: 0)
       transaction.should be_invalid
     end
+
+    it "shouldn't create a new instance if no book" do
+      book = build(:transaction, book: nil)
+      book.should be_invalid
+    end
   end
 
   describe "'s class methods" do
     describe "##incomes" do
       it "should return income transactions" do
-        expense = create(:transaction, amount: -10)
-        income1 = create(:transaction, amount: +10)
-        income2 = create(:transaction, amount: +20)
-        income3 = create(:transaction, amount: +50)
+        book = create(:book)
+        expense = create(:transaction, book: book, amount: -10)
+        income1 = create(:transaction, book: book, amount: +10)
+        income2 = create(:transaction, book: book, amount: +20)
+        income3 = create(:transaction, book: book, amount: +50)
 
         Transaction.incomes.should == [income1, income2, income3]
       end
@@ -52,10 +60,11 @@ describe Transaction do
 
     describe "##expenses" do
       it "should return expense transactions" do
-        expense1 = create(:transaction, amount: -50)
-        expense2 = create(:transaction, amount: -20)
-        expense3 = create(:transaction, amount: -10)
-        income   = create(:transaction, amount: +10)
+        book = create(:book)
+        expense1 = create(:transaction, book: book, amount: -50)
+        expense2 = create(:transaction, book: book, amount: -20)
+        expense3 = create(:transaction, book: book, amount: -10)
+        income   = create(:transaction, book: book, amount: +10)
 
         Transaction.expenses.should == [expense1, expense2, expense3]
       end
@@ -63,9 +72,10 @@ describe Transaction do
 
     describe "##total" do
       it "should return total amount of transaction" do
-        create(:transaction, amount: -50)
-        create(:transaction, amount: -20)
-        create(:transaction, amount: +30)
+        book = create(:book)
+        create(:transaction, book: book, amount: -50)
+        create(:transaction, book: book, amount: -20)
+        create(:transaction, book: book, amount: +30)
 
         Transaction.total.should == -40
       end
@@ -80,9 +90,10 @@ describe Transaction do
           today.strftime("%Y.%m.%d") => 2
         }
 
-        create(:transaction, transacted_at: yesterday)
-        create(:transaction, transacted_at: today)
-        create(:transaction, transacted_at: today)
+        book = create(:book)
+        create(:transaction, book: book, transacted_at: yesterday)
+        create(:transaction, book: book, transacted_at: today)
+        create(:transaction, book: book, transacted_at: today)
 
         result = Transaction.group_by_date
         result = Hash[*result.map{|k, v| [k, v.count]}.sort.flatten]
