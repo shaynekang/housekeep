@@ -1,9 +1,9 @@
 class Book < ActiveRecord::Base
   attr_accessible :title
 
-  belongs_to :user
+  belongs_to :author, class_name: 'User'
   has_many :transactions, :dependent => :destroy
 
-  validates_presence_of :title, :user_id
-  validates_uniqueness_of :title, :scope => :user_id
+  validates_presence_of :title, :author_id
+  validates_uniqueness_of :title, :scope => :author_id
 end

@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :user do
+  factory :user, aliases: [:author] do
     provider "twitter"
     uid  "37"
     name "John Doe"
@@ -18,9 +18,8 @@ FactoryGirl.define do
     name "Park Park"
   end
 
-
   factory :book do
-    user
+    author
     title "Alice in the Wonderland"
   end
 
