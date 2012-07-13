@@ -46,30 +46,6 @@ describe Page do
   end
 
   describe "'s class methods" do
-    describe "##incomes" do
-      it "should return income pages" do
-        book = create(:book)
-        expense = create(:page, book: book, amount: -10)
-        income1 = create(:page, book: book, amount: +10)
-        income2 = create(:page, book: book, amount: +20)
-        income3 = create(:page, book: book, amount: +50)
-
-        Page.incomes.should == [income1, income2, income3]
-      end
-    end
-
-    describe "##expenses" do
-      it "should return expense pages" do
-        book = create(:book)
-        expense1 = create(:page, book: book, amount: -50)
-        expense2 = create(:page, book: book, amount: -20)
-        expense3 = create(:page, book: book, amount: -10)
-        income   = create(:page, book: book, amount: +10)
-
-        Page.expenses.should == [expense1, expense2, expense3]
-      end
-    end
-
     describe "##total" do
       it "should return total amount of page" do
         book = create(:book)

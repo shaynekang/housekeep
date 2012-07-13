@@ -1,10 +1,10 @@
 class User < ActiveRecord::Base
   attr_accessible :provider, :uid, :name, :email, :avatar
 
-  has_many :books, foreign_key: :author_id, :dependent => :destroy
+  has_many :books, foreign_key: :author_id, dependent: :destroy
 
   validates_presence_of :provider, :uid, :name
-  validates_uniqueness_of :uid, :scope => :provider
+  validates_uniqueness_of :uid, scope: :provider
 
   class << self
     def find_or_create_with_omniauth!(auth)

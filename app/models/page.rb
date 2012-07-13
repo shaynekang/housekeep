@@ -11,9 +11,6 @@ class Page < ActiveRecord::Base
 
   validate :amount_should_not_be_zero
 
-  scope :incomes,  where('amount > ?', 0)
-  scope :expenses, where('amount < ?', 0)
-
   module ClassMethods
     def total
       sum(&:amount)

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120713131723) do
+ActiveRecord::Schema.define(:version => 20120713133600) do
 
   create_table "books", :force => true do |t|
     t.integer  "author_id"
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(:version => 20120713131723) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "books", ["author_id", "title"], :name => "index_books_on_author_id_and_title", :unique => true
 
   create_table "pages", :force => true do |t|
     t.decimal  "amount",        :default => 0.0
@@ -29,6 +31,8 @@ ActiveRecord::Schema.define(:version => 20120713131723) do
     t.integer  "book_id"
   end
 
+  add_index "pages", ["book_id", "transacted_at"], :name => "index_pages_on_book_id_and_transacted_at"
+
   create_table "users", :force => true do |t|
     t.string   "provider"
     t.string   "uid"
@@ -38,5 +42,7 @@ ActiveRecord::Schema.define(:version => 20120713131723) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "users", ["provider", "uid"], :name => "index_users_on_provider_and_uid", :unique => true
 
 end

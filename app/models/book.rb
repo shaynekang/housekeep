@@ -2,10 +2,10 @@ class Book < ActiveRecord::Base
   attr_accessible :title
 
   belongs_to :author, class_name: 'User'
-  has_many :pages, :dependent => :destroy
+  has_many :pages, dependent: :destroy
 
   validates_presence_of :title, :author_id
-  validates_uniqueness_of :title, :scope => :author_id
+  validates_uniqueness_of :title, scope: :author_id
 
   class << self
     def default
