@@ -1,4 +1,6 @@
 <h3>가게부 내역</h3>
 
-<%= link_to "새로운 내역 작성하기", [:new, :page] %>
+<%= link_to "새로운내역", [:new, :page], class: 'new-page btn btn-primary' %>
+<div class='clear'></div>
+
 <%= render 'pages/list' %>

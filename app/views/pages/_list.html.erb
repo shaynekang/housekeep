@@ -1,9 +1,9 @@
 <% unless @pages.empty? %>
-  <div class='housekeep-info'>
+  <div id='housekeep-list'>
     <% @pages.group_by_date.each do |transacted_date, pages| %>
       <div class='header'>
         <h3><%= transacted_date %></h3>
-        <%= link_to "새로운내역", new_page_path(transacted_at: transacted_date), class: 'btn btn-primary' %>
+        <%= link_to "새로운내역", new_page_path(transacted_at: transacted_date), class: 'new-page btn btn-primary' %>
       </div>
 
       <table class='table table-condensed'>
@@ -40,19 +40,3 @@
 <% else %>
   <p>가게부 내역이 없습니다.</p>
 <% end %>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
