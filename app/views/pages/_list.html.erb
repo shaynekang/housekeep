@@ -1,39 +1,42 @@
 <% unless @pages.empty? %>
-  <% @pages.group_by_date.each do |transacted_date, pages| %>
-    <h3><%= transacted_date %></h3>
-    <%= link_to "새로운 내역 작성하기", new_page_path(transacted_at: transacted_date) %>
+  <div class='housekeep-info'>
+    <% @pages.group_by_date.each do |transacted_date, pages| %>
+      <div class='header'>
+        <h3><%= transacted_date %></h3>
+        <%= link_to "새로운내역", new_page_path(transacted_at: transacted_date), class: 'btn btn-primary' %>
+      </div>
 
-    <table class='housekeep-page table table-condensed'>
-      <thead>
-        <tr>
-          <th>시간</th>
-          <th>수입</th>
-          <th>지출</th>
-          <th>내역</th>
-          <th>메뉴</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% pages.each do |page| %>
+      <table class='table table-condensed'>
+        <thead>
           <tr>
-            <td class='transacted-at'><%= page.transacted_at %></td>
-            <td class='income'><%= page.income? ? number_to_currency(page.amount) : '' %></td>
-            <td class='expense'><%= page.expense? ? number_to_currency(page.amount) : '' %></td>
-            <td class='note'><strong><%= page.note %></strong></td>
-            <td class='menu'>
-              <div class="btn-group">
-                <%= link_to "수정", [:edit, page], class: 'btn btn-warning btn-small' %>
-                <%= link_to "제거", page, method: :delete, class: 'btn btn-danger btn-small' %>
-              </div>
-            </td>
+            <th>시간</th>
+            <th>수입</th>
+            <th>지출</th>
+            <th>내역</th>
+            <th>메뉴</th>
           </tr>
-        <% end %>
-    </tbody>
-    </table>
-
-    <p>총합: <%=  number_to_currency pages.total %></p>
-  <% end %>
-  <p>총합: <%=  number_to_currency @pages.total %></p>
+        </thead>
+        <tbody>
+          <% pages.each do |page| %>
+            <tr>
+              <td class='transacted-at'><%=l page.transacted_at %></td>
+              <td class='income'><%= page.income? ? number_to_currency(page.amount) : '' %></td>
+              <td class='expense'><%= page.expense? ? number_to_currency(page.amount) : '' %></td>
+              <td class='note'><strong><%= page.note %></strong></td>
+              <td class='menu'>
+                <div class="btn-group">
+                  <%= link_to "수정", [:edit, page], class: 'btn btn-warning btn-small' %>
+                  <%= link_to "제거", page, method: :delete, class: 'btn btn-danger btn-small' %>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <p class='total'><%=  number_to_currency pages.total %></p>
+    <% end %>
+    <p class='total'>총합: <%=  number_to_currency @pages.total %></p>
+  </div>
 <% else %>
   <p>가게부 내역이 없습니다.</p>
 <% end %>
