@@ -1,0 +1,27 @@
+.housekeep-page {
+  th, td {
+    text-align: center;
+  }
+  
+  width: 480px;
+  
+  .transacted-at {
+    min-width: 120px;
+  }
+
+  .income {
+    min-width: 80px;
+  }
+
+  .expense {
+    min-width: 80px;
+  }
+
+  .note {
+    min-width: 80px;
+  }
+
+  .menu {
+    min-width: 100px;
+  }
+}
