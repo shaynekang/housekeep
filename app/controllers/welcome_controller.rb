@@ -1,4 +1,4 @@
 class WelcomeController < ApplicationController
-  layout :nil
+  layout 'welcome'
   skip_before_filter :login_required
 end
