@@ -1,7 +1,6 @@
-<h3>가게부</h3>
+<h3>가게부 내역</h3>
 
-<ul>
-  <li><%= link_to "트위터로 로그인", 'auth/twitter' %></li>
-  <li><%= link_to "페이스북으로 로그인", 'auth/facebook' %></li>
-  <li><%= link_to "구글로 로그인", 'auth/google_oauth2' %></li>
-</ul>
+<%= link_to "새로운내역", [:new, :page], class: 'new-page btn btn-primary' %>
+<div class='clear'></div>
+
+<%= render 'pages/list' %>
