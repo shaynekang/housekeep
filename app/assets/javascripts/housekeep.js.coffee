@@ -4,7 +4,11 @@ window.App =
   Views: {}
   Routers: {}
   init: ->
-  	alert 'Hello from Backbone!'
+  	pages = new App.Collections.Pages()
+  	pages.fetch
+  		success: ->
+  			new App.Routers.Housekeeps(collection: pages)
+  			Backbone.history.start()
 
 $(document).ready ->
   App.init()

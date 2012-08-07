@@ -1,0 +1,45 @@
+<h1>가게부</h1>
+<div class="housekeep-containter">
+
+  <h3>가게부 내역</h3>
+
+  <a href='/pages/new' class='new-page btn btn-primary'>새로운내역</a>
+  <div class='clear'></div>
+
+  <% _.each(pages.groupByTransactedAt(), function(pages, transactedAt){ %>
+    <div class='header'>
+      <h3><%= transactedAt %></h3>
+      <a href='/pages/new?transacted_at<%= transactedAt %>' class='new-page btn btn-primary'>새로운내역</a>
+    </div>
+
+    <table class='table table-condensed'>
+      <thead>
+        <tr>
+          <th>시간</th>
+          <th>수입</th>
+          <th>지출</th>
+          <th>내역</th>
+          <th>메뉴</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% _.each(pages, function(page){ %>
+          <tr>
+            <td class='transacted-at'><%= page.escape('transacted_at') %></td>
+            <td class='income'><%= page.escape('amount') %></td>
+            <td class='expense'><%= page.escape('amount') %></td>
+            <td class='note'><strong><%= page.escape('note') %></strong></td>
+            <td class='menu'>
+              <div class="btn-group">
+                <a href="pages/<%= page.escape('id') %>/edit" class='btn btn-warning btn-small'>수정</a>
+                <a href="pages/<%= page.escape('id') %>", class='btn btn-danger btn-small' data-method="delete">제거</a>
+              </div>
+            </td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+    <p class='total'><%= new App.Collections.Pages(pages).total() %></p>
+  <% }); %>
+  <p class='total'><%= pages.total() %></p>
+</div>

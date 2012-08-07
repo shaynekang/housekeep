@@ -2,6 +2,11 @@
 
 class PagesController < ApplicationController
   before_filter :find_pages
+  respond_to :html, :json
+
+  def index
+    respond_with @pages
+  end
 
   def new
     @page = @pages.build
