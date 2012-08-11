@@ -10,5 +10,5 @@ window.App =
   			new App.Routers.Housekeeps(collection: pages)
   			Backbone.history.start()
 
-$(document).ready ->
-  App.init()
+# $(document).ready ->
+#   App.init()
