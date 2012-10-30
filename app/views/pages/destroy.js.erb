@@ -1,0 +1,23 @@
+var page = $('#page-<%= @page.id %>');
+var pageListPerDate = $("#pages-<%= @page.transacted_date %>");
+var allPageList = $('#housekeep-list');
+
+page.find('td')
+  .wrapInner('<div style="display: block;" />')
+  .parent()
+  .find('td > div')
+  .slideUp(700, function(){
+    $(this).parent().parent().remove();
+
+    if(pageListPerDate.find('tr.page').length == 0) {
+      pageListPerDate.remove();
+    }
+
+    if(allPageList.find('.pages').length == 0) {
+      allPageList.remove();
+
+      if($('p.alert').length == 0) {
+        $('.housekeep-containter').append("<p class='alert'>There is no Pages.</p>");
+      }
+    }
+ });

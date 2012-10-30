@@ -17,9 +17,7 @@ class Page < ActiveRecord::Base
     end
 
     def group_by_date
-      grouped = scoped.group_by do |page|
-        page.transacted_at.strftime("%Y.%m.%d")
-      end
+      grouped = scoped.group_by {|page| page.transacted_date}
       grouped.each{|date, pages| pages.extend(ClassMethods)}
       grouped
     end
@@ -32,6 +30,10 @@ class Page < ActiveRecord::Base
 
   def expense?
     amount < 0
+  end
+
+  def transacted_date
+    transacted_at.strftime("%Y-%m-%d")
   end
 
   private

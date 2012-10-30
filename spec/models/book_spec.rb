@@ -50,7 +50,7 @@ describe Book do
         author = create(:author)
         expect do
           author.books.default
-        end.should change(Book, :count).from(0).to(1)
+        end.to change(Book, :count).from(0).to(1)
       end
     end
   end

@@ -1,6 +1,6 @@
-source 'https://rubygems.org'
+source :rubygems
 
-gem 'rails', '3.2.6'
+gem 'rails', '3.2.8'
 gem 'jquery-rails'
 gem 'dynamic_form'
 gem 'rails-i18n'

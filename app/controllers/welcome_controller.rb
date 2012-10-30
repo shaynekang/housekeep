@@ -3,11 +3,11 @@ class WelcomeController < ApplicationController
   before_filter :display_login_page
 
   def index
-  	@pages = current_user.books.default.pages
+    @pages = current_user.books.default.pages
   end
 
   private
   def display_login_page
-  	render 'login', layout: 'login' unless current_user
+    render 'login', layout: 'login' unless current_user
   end
 end

@@ -62,8 +62,8 @@ describe Page do
         yesterday = DateTime.now - 1.day
         today = DateTime.now
         expected = {
-          yesterday.strftime("%Y.%m.%d") => 1,
-          today.strftime("%Y.%m.%d") => 2
+          yesterday.strftime("%Y-%m-%d") => 1,
+          today.strftime("%Y-%m-%d") => 2
         }
 
         book = create(:book)

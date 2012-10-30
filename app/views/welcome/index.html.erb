@@ -1,6 +1,6 @@
-<h3>가게부 내역</h3>
+<h3>Page List</h3>
 
-<%= link_to "새로운내역", [:new, :page], class: 'new-page btn btn-primary' %>
+<%= link_to "New", [:new, :page], class: 'new-page btn btn-primary', remote: true %>
 <div class='clear'></div>
 
 <%= render 'pages/list' %>

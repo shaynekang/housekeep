@@ -45,7 +45,7 @@ describe User do
       it "should create a new user if provider and uid isn't exist" do
         expect do
           User.find_or_create_with_omniauth!(params)
-        end.should change(User, :count).from(0).to(1)
+        end.to change(User, :count).from(0).to(1)
       end
 
       it "should return the user given provider and uid" do
