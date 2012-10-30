@@ -1,5 +1,5 @@
-<% unless @pages.empty? %>
-  <div id='housekeep-list'>
+<div id='housekeep-list'>
+  <% unless @pages.empty? %>
     <% @pages.group_by_date.each do |transacted_date, pages| %>
       <div id="pages-<%= transacted_date %>", class="pages">
         <div class='header'>
@@ -38,7 +38,7 @@
       </div>
     <% end %>
     <p class='total'>Total: <%=  number_to_currency @pages.total %></p>
-  </div>
-<% else %>
-  <p>There is no Page</p>
-<% end %>
+  <% else %>
+    <p>There is no Page</p>
+  <% end %>
+</div>
